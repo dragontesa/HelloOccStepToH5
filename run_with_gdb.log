@@ -1,0 +1,77 @@
+dragontesa@t2:~/.../HelloOccStepToH5$ gdb build/HelloOccStepToH5 
+GNU gdb (Fedora Linux) 16.2-3.fc42
+Copyright (C) 2024 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "x86_64-redhat-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<https://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Python Exception <class 'AttributeError'>: module 'gdb' has no attribute 'printing'
+/home/dragontesa/.gdbinit:10: Error in sourced command file:
+Error occurred in Python: module 'gdb' has no attribute 'printing'
+Reading symbols from build/HelloOccStepToH5...
+(gdb) b 47
+Breakpoint 1 at 0x400c3a: file /home/dragontesa/314/hello/HelloOccStepToH5/WriteStepAttributeHdf5.cpp, line 47.
+(gdb) r
+Starting program: /home/dragontesa/314/hello/HelloOccStepToH5/build/HelloOccStepToH5 
+
+This GDB supports auto-downloading debuginfo from the following URLs:
+  <https://debuginfod.fedoraproject.org/>
+Enable debuginfod for this session? (y or [n]) y
+Debuginfod has been enabled.
+To make this setting permanent, add 'set debuginfod enabled on' to .gdbinit.
+Downloading 17.65 M separate debug info for /lib64/libstdc++.so.6
+Downloading 10.24 M separate debug info for /home/dragontesa/.cache/debuginfod_client/d922a246ad839f7f802915182e504f51aa6f2b20/debuginfo
+Function(s) ^std::(move|forward|as_const|(__)?addressof) will be skipped when stepping.                 
+Function(s) ^std::(shared|unique)_ptr<.*>::(get|operator) will be skipped when stepping.
+Function(s) ^std::(basic_string|vector|array|deque|(forward_)?list|(unordered_|flat_)?(multi)?(map|set)|span)<.*>::(c?r?(begin|end)|front|back|data|size|empty) will be skipped when stepping.
+Function(s) ^std::(basic_string|vector|array|deque|span)<.*>::operator.] will be skipped when stepping.
+Downloading 2.22 M separate debug info for /lib64/libm.so.6
+Downloading 648.98 K separate debug info for /lib64/libgcc_s.so.1                                       
+Downloading 6.65 M separate debug info for /lib64/libc.so.6                                             
+[Thread debugging using libthread_db enabled]                                                           
+Using host libthread_db library "/lib64/libthread_db.so.1".
+Downloading 2.87 M separate debug info for /lib64/libX11.so.6
+Downloading 1.04 M separate debug info for /lib64/libfontconfig.so.1                                    
+Downloading 3.01 M separate debug info for /lib64/libfreetype.so.6                                      
+Downloading 39.18 K separate debug info for /home/dragontesa/.cache/debuginfod_client/c1b8955a16e0738fc77383eff9abdc532d66cfeb/debuginfo
+Downloading 298.36 K separate debug info for /lib64/libGL.so.1                                          
+Downloading 35.19 K separate debug info for /home/dragontesa/.cache/debuginfod_client/9b05b96a11133e8fac85494d3ba05e5859571148/debuginfo
+Downloading 4.70 M separate debug info for /lib64/libtcl8.6.so                                          
+Downloading 3.53 M separate debug info for /lib64/libtk8.6.so                                           
+Downloading 522.14 K separate debug info for /lib64/libz.so.1                                           
+Downloading 76.69 K separate debug info for /home/dragontesa/.cache/debuginfod_client/e55fa60a32d4cfbd0685f1fda06842deb272e005/debuginfo
+Downloading 522.61 K separate debug info for /lib64/libxcb.so.1                                         
+Downloading 3.44 M separate debug info for /lib64/libxml2.so.2                                          
+Downloading separate debug info for /home/dragontesa/.cache/debuginfod_client/2e4579b8a4b3e7fe5336a1abc29f7abd47388232/debuginfo
+Downloading 164.49 K separate debug info for /lib64/libbz2.so.1                                         
+Downloading separate debug info for /home/dragontesa/.cache/debuginfod_client/02ccc4dc6dcccacd8a04f79f0f467d9d895c20bd/debuginfo
+Downloading 700.60 K separate debug info for /lib64/libpng16.so.16                                      
+Downloading 28.61 M separate debug info for /lib64/libharfbuzz.so.0                                     
+Downloading 5.48 M separate debug info for /home/dragontesa/.cache/debuginfod_client/2572ecf9e4add7eddaefb0aebdcbc714c682759e/debuginfo
+Downloading 206.08 K separate debug info for /lib64/libbrotlidec.so.1                                   
+Downloading separate debug info for /home/dragontesa/.cache/debuginfod_client/eae2e9d3f8c0fd04a6911686fec071e9d42ba37b/debuginfo
+Downloading 463.78 K separate debug info for /lib64/libGLX.so.0                                         
+Downloading 253.02 K separate debug info for /lib64/libXext.so.6                                        
+Downloading 374.57 K separate debug info for /lib64/libGLdispatch.so.0                                  
+Downloading 323.77 K separate debug info for /lib64/libXft.so.2                                         
+Downloading separate debug info for /lib64/libXau.so.6                                                  
+Downloading 834.50 K separate debug info for /lib64/liblzma.so.5                                        
+Downloading 3.59 M separate debug info for /lib64/libglib-2.0.so.0                                      
+Downloading 701.80 K separate debug info for /home/dragontesa/.cache/debuginfod_client/6827394d759bc44f207f57e7ab5f8e6b17e82c1c/debuginfo
+Downloading 1.04 M separate debug info for /lib64/libgraphite2.so.3                                     
+Downloading separate debug info for /lib64/libbrotlicommon.so.1                                         
+Downloading 153.99 K separate debug info for /lib64/libXrender.so.1                                     
+Downloading 1.64 M separate debug info for /lib64/libpcre2-8.so.0                                       
+Downloading 82.57 K separate debug info for /home/dragontesa/.cache/debuginfod_client/aa6c7664d7e1ccef9c47f1957e80ef092f01b86e/debuginfo
+Usage: step2hdf5 input.step output.h5                                                                   
+[Inferior 1 (process 23961) exited normally]
+(gdb) 

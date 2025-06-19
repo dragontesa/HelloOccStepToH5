@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/home/dragontesa/314/hello/HelloOccStepToH5/build",
+  "command": "/usr/bin/g++  -I/opt/occt/7.8.1/include/opencascade -I/opt/hdf5/1.14/include -I/home/dragontesa/314/hello/HelloOccStepToH5 -g -std=gnu++20 -o CMakeFiles/HelloOccStepToH5.dir/WriteStepAttributeHdf5.cpp.o -c /home/dragontesa/314/hello/HelloOccStepToH5/WriteStepAttributeHdf5.cpp",
+  "file": "/home/dragontesa/314/hello/HelloOccStepToH5/WriteStepAttributeHdf5.cpp",
+  "output": "CMakeFiles/HelloOccStepToH5.dir/WriteStepAttributeHdf5.cpp.o"
+}
+]
