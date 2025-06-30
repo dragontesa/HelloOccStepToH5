@@ -19,6 +19,10 @@
 
 // Helper to convert TCollection_ExtendedString to std::string
 std::string OCAFStringToString(const TCollection_ExtendedString& extendedString) {
+    // Check if the extended string is empty or null to prevent issues
+    if (extendedString.IsEmpty()) {
+        return "(Empty Name String)";
+    }
     char* cstr = new char[extendedString.LengthOfCString() + 1];
     extendedString.ToCString(cstr);
     std::string result(cstr);
@@ -41,13 +45,22 @@ Handle(TDocStd_Document) ReadSTEPFile(const std::string& filepath) {
         Handle(XCAFApp_Application) app = XCAFApp_Application::Get();
         if (app.IsNull()) {
             std::cerr << "Error: XCAF application is null, attempting to initialize." << std::endl;
-            // You might need to call XCAFApp_Application::Init() if Get() returns null initially
-            // XCAFApp_Application::Init();
-            // app = XCAFApp_Application::Get();
+            // In a real application, you might need to ensure OpenCASCADE is initialized
+            // if XCAFApp_Application::Get() returns null. This often means ensuring
+            // that a global OCCT init function is called, or if it's the very first
+            // time OCCT is used. For most console apps, Get() usually works.
+            // If OCCT 7.8.1, XCAFApp_Application::Get() might sometimes return null if
+            // the application hasn't been instantiated yet. You can instantiate it once.
+            // For example:
+            // app = new XCAFApp_Application();
+            // XCAFApp_Application::SetApplication(app);
         }
 
         // Create a new XCAF document
+        // For this example, relying on Get() to return a valid instance or error out if not.
+        // If doc becomes null after NewDocument, it's an app initialization issue.
         app->NewDocument("XCAF", doc);
+
 
         // Transfer STEP data into the XCAF document
         reader.Transfer(doc);
@@ -75,8 +88,9 @@ void GetAndPrintShapeAttributes(const TDF_Label& label, const TopoDS_Shape& shap
     std::cout << indentStr << "--- Shape Attributes ---" << std::endl;
 
     // 1. Get Shape Name
-    TCollection_ExtendedString name;
-    if (shapeTool->GetLabelName(label, name)) {
+    // Correct usage: GetLabelName returns TCollection_ExtendedString
+    TCollection_ExtendedString name = shapeTool->GetLabelName(label);
+    if (!name.IsEmpty()) { // Check if a name was actually retrieved
         std::cout << indentStr << "  Name: " << OCAFStringToString(name) << std::endl;
     } else {
         std::cout << indentStr << "  Name: (Unnamed or No Name Attached)" << std::endl;
@@ -123,6 +137,7 @@ void GetAndPrintShapeAttributes(const TDF_Label& label, const TopoDS_Shape& shap
             // For compounds, you might need to iterate through sub-shapes
             // and sum up their properties if composite property calc isn't sufficient.
             // BRepGProp can also work on compounds, but its meaning might be aggregate.
+            // These calls might compute properties for the entire compound based on its constituents.
             BRepGProp::VolumeProperties(shape, props); // Try volume properties as a general fallback
             volume = props.Volume();
             BRepGProp::SurfaceProperties(shape, props); // Try surface properties
@@ -201,7 +216,8 @@ int main() {
 
     // --- Iterate through top-level shapes (products/assemblies) ---
     TDF_LabelSequence topLevelLabels;
-    shapeTool->GetProducts(topLevelLabels); // Gets labels of top-level products/assemblies
+    // Corrected function for OCCT 7.8.1 (and similar versions) to get top-level products/shapes
+    shapeTool->GetFreeShapes(topLevelLabels); // This will return labels for top-level product shapes
 
     if (topLevelLabels.IsEmpty()) {
         std::cout << "No top-level products/assemblies found in the XCAF document." << std::endl;
@@ -217,6 +233,9 @@ int main() {
                 GetAndPrintShapeAttributes(currentLabel, currentShape, shapeTool, colorTool, 1);
 
                 // Recursively explore components (children) of this shape
+                // Note: GetComponents lists direct children/instances of the current assembly/product.
+                // If you are looking for ALL subshapes (faces, edges, etc.), you'd use TopExp_Explorer
+                // on the TopoDS_Shape itself.
                 TDF_LabelSequence components;
                 shapeTool->GetComponents(currentLabel, components);
                 if (!components.IsEmpty()) {
