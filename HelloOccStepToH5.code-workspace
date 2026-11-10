@@ -2,9 +2,43 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"name": "HDF-C++",
+			"path": "/home/dragontesa/315/sdk/hdf5/hdf5-1.14.6/c++"
+		},
+		{
+			"name": "HDF",
+			"path": "/home/dragontesa/315/sdk/hdf5/hdf5-1.14.6/src"
 		}
 	],
 	"settings": {
+		"files.watcherExclude": {
+			"**/.*/**": true,
+			"**/Binaries": true,
+			"**/Build/**": true,
+			"**/Content/**": true,
+			"**/DerivedDataCache/**": true,
+			"**/Intermediate/**": true,
+			"**/node_modules/*/**": true,
+		},
+		"files.exclude": {
+			"**/.*": true,
+			"**/.*/**": true,
+			"**/Binaries": true,
+			"**/Intermediate": true,
+			"**/Content": true,
+			"**/Plugins/**/Binaries": true,
+			"**/Resources/**":true,
+			"**/Saved": true
+		},
+		"files.readonlyInclude": {
+			"/home/dragontesa/315/sdk/hdf5/hdf5-1.14.6/**/*": true
+			
+		},
+		"files.readonlyExclude": {
+			"**/Plugins/Vkstar2CadPlugin/Source/Vkstar2CadPlugin/**/*": true,
+		},
 		"files.associations": {
 			"*.uproject": "json",
 			"*.uplugin": "json",
